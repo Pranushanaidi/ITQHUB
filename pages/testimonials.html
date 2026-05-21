@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Reviews – ITQHUB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .testi-section { padding:80px 0; }
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; margin-top:50px; }
+
+    /* RATING SUMMARY */
+    .rating-summary {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:40px; text-align:center; margin-bottom:60px;
+      display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap;
+    }
+    .big-rating { font-family:var(--font-head); font-size:5rem; font-weight:800; color:var(--accent); line-height:1; }
+    .big-stars  { font-size:1.6rem; color:var(--gold); margin:8px 0; }
+    .rating-label { font-size:.88rem; color:var(--muted); }
+    .rating-bars  { flex:1; min-width:200px; max-width:360px; }
+    .bar-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .bar-label { font-size:.8rem; color:var(--muted); width:30px; flex-shrink:0; }
+    .bar-track { flex:1; height:8px; background:rgba(255,255,255,.08); border-radius:4px; overflow:hidden; }
+    .bar-fill  { height:100%; background:var(--gold); border-radius:4px; transition:width 1s ease; }
+    .bar-count { font-size:.8rem; color:var(--muted); width:30px; text-align:right; flex-shrink:0; }
+
+    /* VIDEO PLACEHOLDER */
+    .video-section { padding:80px 0; background:rgba(255,255,255,.02); }
+    .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; margin-top:40px; }
+    .video-card {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      overflow:hidden; transition:all .3s;
+    }
+    .video-card:hover { border-color:var(--accent); transform:translateY(-4px); }
+    .video-thumb {
+      height:160px; background:linear-gradient(135deg,var(--blue),rgba(0,212,255,.15));
+      display:flex; align-items:center; justify-content:center; position:relative;
+    }
+    .play-btn {
+      width:56px; height:56px; border-radius:50%; background:var(--accent);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy); font-size:1.4rem; cursor:pointer; transition:transform .3s;
+    }
+    .video-card:hover .play-btn { transform:scale(1.1); }
+    .video-info { padding:20px; }
+    .video-name { font-family:var(--font-head); font-weight:700; }
+    .video-role { font-size:.8rem; color:var(--accent); margin-top:4px; }
+
+    /* CTA */
+    .cta-section {
+      padding:80px 0; text-align:center;
+      background:linear-gradient(135deg,rgba(0,90,180,.3),rgba(0,212,255,.1));
+      border-top:1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-logo">ITQ<span>HUB</span></div></div>
+<button id="btt">▲</button>
+<div id="navPlaceholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <span class="section-tag">Student Reviews</span>
+    <h1 class="section-title">What Our <span>Alumni Say</span></h1>
+    <p>Real success stories from real students who transformed their careers with ITQHUB.</p>
+  </div>
+</div>
+
+<div id="marqueePlaceholder"></div>
+
+<section class="testi-section">
+  <div class="container">
+    <!-- RATING SUMMARY -->
+    <div class="rating-summary reveal">
+      <div>
+        <div class="big-rating">4.9</div>
+        <div class="big-stars">★★★★★</div>
+        <div class="rating-label">Based on 5,000+ reviews</div>
+      </div>
+      <div class="rating-bars">
+        <div class="bar-row"><span class="bar-label">5 ★</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><span class="bar-count">92%</span></div>
+        <div class="bar-row"><span class="bar-label">4 ★</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="bar-count">6%</span></div>
+        <div class="bar-row"><span class="bar-label">3 ★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-count">1%</span></div>
+        <div class="bar-row"><span class="bar-label">2 ★</span><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div><span class="bar-count">0%</span></div>
+        <div class="bar-row"><span class="bar-label">1 ★</span><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div><span class="bar-count">0%</span></div>
+      </div>
+    </div>
+
+    <!-- TESTI CARDS -->
+    <div class="testi-grid" id="testiGridPage"></div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS -->
+<section class="video-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Video Stories</span>
+      <h2 class="section-title">Hear It From <span>Them</span></h2>
+    </div>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="video-thumb"><div class="play-btn">▶</div></div>
+        <div class="video-info"><div class="video-name">Priya Sharma</div><div class="video-role">Software Engineer @ TCS</div></div>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-thumb"><div class="play-btn">▶</div></div>
+        <div class="video-info"><div class="video-name">Rahul Verma</div><div class="video-role">Data Analyst @ Infosys</div></div>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-thumb"><div class="play-btn">▶</div></div>
+        <div class="video-info"><div class="video-name">Arjun Mehta</div><div class="video-role">Cloud Architect @ Wipro</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container reveal">
+    <span class="section-tag">Join Them</span>
+    <h2 class="section-title">Your Success Story <span>Starts Here</span></h2>
+    <p style="color:var(--muted);max-width:480px;margin:14px auto 36px;">Thousands have already transformed their careers. You're next.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html"   class="btn btn-primary">Enroll Now →</a>
+      <a href="courses.html"   class="btn btn-outline">Browse Courses</a>
+    </div>
+  </div>
+</section>
+
+<div id="footerPlaceholder"></div>
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById('navPlaceholder').outerHTML    = getNavHTML('../');
+  document.getElementById('marqueePlaceholder').outerHTML = getMarqueeHTML();
+  document.getElementById('footerPlaceholder').outerHTML  = getFooterHTML('../');
+
+  document.getElementById('testiGridPage').innerHTML = testimonials.map(t=>testiCardHTML(t)).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses – ITQHUB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .courses-section { padding:70px 0 100px; }
+    .courses-filter {
+      display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:40px 0;
+    }
+    .filter-btn {
+      padding:8px 20px; border-radius:50px; border:1px solid var(--border);
+      background:transparent; color:var(--muted); font-family:var(--font-body);
+      font-size:.84rem; cursor:pointer; transition:all .25s;
+    }
+    .filter-btn.active,.filter-btn:hover { background:var(--accent); color:var(--navy); border-color:var(--accent); }
+    .courses-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:24px; }
+
+    /* COURSE MODAL */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.75); backdrop-filter:blur(6px);
+      z-index:2000; display:flex; align-items:center; justify-content:center;
+      opacity:0; visibility:hidden; transition:all .3s;
+    }
+    .modal-overlay.open { opacity:1; visibility:visible; }
+    .modal {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      width:min(560px,92vw); max-height:85vh; overflow-y:auto;
+      padding:36px; position:relative; transform:translateY(30px); transition:transform .3s;
+    }
+    .modal-overlay.open .modal { transform:none; }
+    .modal::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--gold)); }
+    .modal-close {
+      position:absolute; top:16px; right:16px; background:rgba(255,255,255,.08);
+      border:none; color:var(--white); width:32px; height:32px; border-radius:50%;
+      cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center;
+    }
+    .modal-close:hover { background:var(--accent); color:var(--navy); }
+    .modal-emoji { font-size:3rem; margin-bottom:16px; }
+    .modal h2 { font-family:var(--font-head); font-size:1.5rem; font-weight:800; }
+    .modal-meta { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 16px; }
+    .modal-desc { color:var(--muted); font-size:.9rem; margin-bottom:20px; }
+    .modal-topics h4 { font-family:var(--font-head); font-size:.9rem; margin-bottom:10px; }
+    .modal-topics ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .modal-topics li { font-size:.85rem; color:var(--muted); display:flex; gap:8px; align-items:center; }
+    .modal-topics li::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-logo">ITQ<span>HUB</span></div></div>
+<button id="btt">▲</button>
+<div id="navPlaceholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <span class="section-tag">What We Teach</span>
+    <h1 class="section-title">All <span>Courses</span></h1>
+    <p>Browse our full catalogue. Filter by category and click any course to see the full syllabus.</p>
+  </div>
+</div>
+
+<div id="marqueePlaceholder"></div>
+
+<section class="courses-section">
+  <div class="container">
+    <div class="courses-filter reveal">
+      <button class="filter-btn active" data-filter="all">All Courses</button>
+      <button class="filter-btn" data-filter="web">Web Development</button>
+      <button class="filter-btn" data-filter="data">Data & AI</button>
+      <button class="filter-btn" data-filter="cloud">Cloud & DevOps</button>
+      <button class="filter-btn" data-filter="prog">Programming</button>
+    </div>
+    <div class="courses-grid" id="allCoursesGrid"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-emoji" id="mEmoji"></div>
+    <h2 id="mTitle"></h2>
+    <div class="modal-meta" id="mMeta"></div>
+    <p class="modal-desc" id="mDesc"></p>
+    <div class="modal-topics" id="mTopics"></div>
+    <a id="mEnroll" href="contact.html" class="btn btn-primary" style="margin-top:24px;width:100%;justify-content:center;">Enroll in This Course →</a>
+  </div>
+</div>
+
+<div id="footerPlaceholder"></div>
+
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById('navPlaceholder').outerHTML    = getNavHTML('../');
+  document.getElementById('marqueePlaceholder').outerHTML = getMarqueeHTML();
+  document.getElementById('footerPlaceholder').outerHTML  = getFooterHTML('../');
+
+  const syllabus = {
+    1: ['Python basics & syntax','Data types, loops, functions','OOP – classes & inheritance','File handling & exceptions','Modules & pip packages','Automation scripting','Mini projects & exercises'],
+    2: ['Django setup & MVT pattern','URL routing & views','Templates & static files','Models & ORM','Forms & validation','REST APIs with DRF','Deployment on Heroku/VPS'],
+    3: ['HTML5 & CSS3 fundamentals','JavaScript ES6+ deep dive','React.js & hooks','Node.js & Express','MongoDB & Mongoose','JWT auth & REST APIs','Full project deployment'],
+    4: ['Python for data analysis','Pandas & NumPy','Matplotlib & Seaborn','SQL & MySQL','Statistical analysis','Tableau basics','Capstone BI project'],
+    5: ['Supervised & unsupervised learning','Scikit-learn pipelines','Neural networks & deep learning','NLP with NLTK & spaCy','Model evaluation & tuning','TensorFlow basics','ML project deployment'],
+    6: ['AWS core services (EC2, S3, RDS)','IAM roles & policies','Lambda & serverless','CloudFormation basics','VPC & networking','AWS certification prep','Cost optimisation'],
+    7: ['Git & GitHub workflows','Docker & containers','Kubernetes orchestration','Jenkins CI/CD pipeline','Terraform IaC','Monitoring with Prometheus','Real-world DevOps project'],
+    8: ['HTML5 semantic markup','CSS3 & Flexbox/Grid','Tailwind CSS','JavaScript DOM & events','React components & hooks','Responsive design','Portfolio deployment'],
+    9: ['SQL fundamentals','DDL, DML, DCL commands','Joins & subqueries','Stored procedures & triggers','Indexing & performance','Database design patterns','MySQL Workbench'],
+  };
+
+  function renderAll(filter='all') {
+    const filtered = filter==='all' ? courses : courses.filter(c=>c.cat===filter);
+    document.getElementById('allCoursesGrid').innerHTML = filtered.map(c=>`
+      <div class="card course-card reveal" style="display:flex;flex-direction:column;overflow:hidden;cursor:pointer;" onclick="openModal(${c.id})">
+        <div style="height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:${c.bg};position:relative;">
+          ${c.emoji}
+          ${c.hot?'<span class="badge badge-hot" style="position:absolute;top:14px;right:14px;">🔥 Hot</span>':''}
+        </div>
+        <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
+          <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="badge badge-level">${c.level}</span>
+            <span class="badge badge-type">${c.type}</span>
+          </div>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:1.08rem;margin-bottom:8px;">${c.title}</div>
+          <div style="font-size:.84rem;color:var(--muted);flex:1;">${c.desc}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+            <span style="font-size:.8rem;color:var(--muted);">Duration: <strong style="color:var(--white);">${c.duration}</strong></span>
+            <span class="btn-sm" onclick="event.stopPropagation();openModal(${c.id})">View Details →</span>
+          </div>
+        </div>
+      </div>`).join('');
+    initReveal();
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      this.classList.add('active');
+      renderAll(this.dataset.filter);
+    });
+  });
+
+  function openModal(id) {
+    const c = courses.find(x=>x.id===id);
+    document.getElementById('mEmoji').textContent = c.emoji;
+    document.getElementById('mTitle').textContent = c.title;
+    document.getElementById('mMeta').innerHTML =
+      `<span class="badge badge-level">${c.level}</span><span class="badge badge-type">${c.type}</span><span class="badge" style="background:rgba(0,212,255,.1);color:var(--accent);">⏱ ${c.duration}</span>`;
+    document.getElementById('mDesc').textContent = c.desc;
+    const topics = syllabus[id]||[];
+    document.getElementById('mTopics').innerHTML = `<h4>What You'll Learn</h4><ul>${topics.map(t=>`<li>${t}</li>`).join('')}</ul>`;
+    document.getElementById('mEnroll').href = `contact.html?course=${encodeURIComponent(c.title)}`;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+  document.getElementById('modalClose').addEventListener('click',()=>document.getElementById('modalOverlay').classList.remove('open'));
+  document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open');});
+
+  renderAll();
+</script>
+</body>
+</html>

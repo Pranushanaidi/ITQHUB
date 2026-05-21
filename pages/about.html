@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – ITQHUB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .about-main { padding:80px 0; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+    .about-card {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:40px; position:relative; overflow:hidden;
+    }
+    .about-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--accent),var(--gold));
+    }
+    .about-icon-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px; }
+    .about-icon-item {
+      background:rgba(0,212,255,.06); border:1px solid var(--border);
+      border-radius:10px; padding:18px; text-align:center; transition:all .3s;
+    }
+    .about-icon-item:hover { transform:translateY(-4px); border-color:var(--accent); }
+    .about-icon-item .ic { font-size:1.8rem; margin-bottom:6px; }
+    .about-icon-item p   { font-size:.78rem; color:var(--muted); font-weight:500; }
+    .feat-item { display:flex; gap:14px; align-items:flex-start; margin-bottom:22px; }
+    .feat-icon {
+      width:44px; height:44px; border-radius:10px; flex-shrink:0;
+      background:rgba(0,212,255,.1); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    }
+    .feat-title { font-family:var(--font-head); font-weight:700; font-size:.95rem; }
+    .feat-desc  { font-size:.85rem; color:var(--muted); margin-top:3px; }
+
+    /* TEAM */
+    .team-section { padding:80px 0; background:rgba(255,255,255,.02); }
+    .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; margin-top:50px; }
+    .team-card {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:30px 24px; text-align:center; transition:all .3s;
+    }
+    .team-card:hover { border-color:var(--accent); transform:translateY(-5px); }
+    .team-avatar {
+      width:72px; height:72px; border-radius:50%; margin:0 auto 16px;
+      background:linear-gradient(135deg,var(--accent),var(--gold));
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-head); font-weight:800; font-size:1.4rem; color:var(--navy);
+    }
+    .team-name { font-family:var(--font-head); font-weight:700; font-size:1rem; }
+    .team-role { font-size:.82rem; color:var(--accent); margin-top:4px; }
+    .team-bio  { font-size:.82rem; color:var(--muted); margin-top:10px; }
+
+    /* MILESTONES */
+    .milestones { padding:80px 0; }
+    .milestone-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:50px; }
+    .milestone-card {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:32px; text-align:center; position:relative; overflow:hidden; transition:all .3s;
+    }
+    .milestone-card:hover { border-color:var(--accent); }
+    .milestone-card::after {
+      content:''; position:absolute; bottom:0; left:0; height:3px; width:0;
+      background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .4s;
+    }
+    .milestone-card:hover::after { width:100%; }
+    .m-num { font-family:var(--font-head); font-size:2.8rem; font-weight:800; color:var(--accent); }
+    .m-label { font-size:.85rem; color:var(--muted); margin-top:6px; }
+
+    @media(max-width:900px){ .about-grid{grid-template-columns:1fr;} .milestone-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:500px){ .milestone-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-logo">ITQ<span>HUB</span></div></div>
+<button id="btt">▲</button>
+<div id="navPlaceholder"></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <span class="section-tag">About ITQHUB</span>
+    <h1 class="section-title">Building <span>Tomorrow's</span> Tech Talent</h1>
+    <p>Learn who we are, what we stand for, and why thousands of students trust ITQHUB to launch their careers.</p>
+  </div>
+</div>
+
+<div id="marqueePlaceholder"></div>
+
+<!-- ABOUT MAIN -->
+<section class="about-main">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-card">
+          <h3 style="font-family:var(--font-head);font-size:1.4rem;font-weight:800;">10+ Years of Excellence</h3>
+          <p style="color:var(--muted);font-size:.88rem;margin-top:8px;">Empowering students with real-world tech skills since 2014.</p>
+          <div class="about-icon-grid">
+            <div class="about-icon-item"><div class="ic">🎓</div><p>Certified Courses</p></div>
+            <div class="about-icon-item"><div class="ic">💼</div><p>Placement Support</p></div>
+            <div class="about-icon-item"><div class="ic">🏆</div><p>Award Winning</p></div>
+            <div class="about-icon-item"><div class="ic">🌐</div><p>Online & Offline</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title">Who We <span>Are</span></h2>
+        <p class="section-sub">ITQHUB is a premier IT training institute committed to bridging the gap between academic learning and industry demands through hands-on, practical education.</p>
+        <div style="margin-top:28px;">
+          <div class="feat-item">
+            <div class="feat-icon">⚡</div>
+            <div>
+              <div class="feat-title">Industry-Aligned Curriculum</div>
+              <div class="feat-desc">Syllabus designed with input from top tech companies to ensure you learn what's actually in demand.</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🧑‍💻</div>
+            <div>
+              <div class="feat-title">Hands-On Project Training</div>
+              <div class="feat-desc">Learn by building real projects under mentorship so your portfolio speaks before your resume does.</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🤝</div>
+            <div>
+              <div class="feat-title">100% Placement Assistance</div>
+              <div class="feat-desc">Our dedicated placement team connects you to top hiring partners and preps you for interviews.</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">📜</div>
+            <div>
+              <div class="feat-title">Industry-Recognized Certifications</div>
+              <div class="feat-desc">Certificates recognised by top companies across India and globally, giving your resume a real edge.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="milestones">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Our Impact</span>
+      <h2 class="section-title">Numbers That <span>Speak</span></h2>
+    </div>
+    <div class="milestone-grid">
+      <div class="milestone-card reveal">
+        <div class="m-num" data-count="5000" data-suffix="+">5000+</div>
+        <div class="m-label">Students Trained</div>
+      </div>
+      <div class="milestone-card reveal">
+        <div class="m-num" data-count="50" data-suffix="+">50+</div>
+        <div class="m-label">Expert Instructors</div>
+      </div>
+      <div class="milestone-card reveal">
+        <div class="m-num" data-count="98" data-suffix="%">98%</div>
+        <div class="m-label">Placement Rate</div>
+      </div>
+      <div class="milestone-card reveal">
+        <div class="m-num" data-count="10" data-suffix="+">10+</div>
+        <div class="m-label">Years of Excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Meet the Team</span>
+      <h2 class="section-title">Our <span>Expert</span> Instructors</h2>
+      <p class="section-sub" style="margin:10px auto 0;">Real practitioners with years of industry experience guiding your learning journey.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">AK</div>
+        <div class="team-name">Anil Kumar</div>
+        <div class="team-role">Python & Django Lead</div>
+        <div class="team-bio">12 years at top MNCs. Full-stack Python developer and Django architect.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">SM</div>
+        <div class="team-name">Sunita Mehta</div>
+        <div class="team-role">Data Science Expert</div>
+        <div class="team-bio">PhD in Statistics. Previously at Google and Flipkart as senior data scientist.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">RJ</div>
+        <div class="team-name">Rohit Jain</div>
+        <div class="team-role">Cloud & DevOps Mentor</div>
+        <div class="team-bio">AWS Certified Solutions Architect with 10 years in cloud infrastructure.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">PD</div>
+        <div class="team-name">Pooja Desai</div>
+        <div class="team-role">Frontend & React Expert</div>
+        <div class="team-bio">8 years building enterprise UIs at Infosys and multiple funded startups.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footerPlaceholder"></div>
+
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById('navPlaceholder').outerHTML    = getNavHTML('../');
+  document.getElementById('marqueePlaceholder').outerHTML = getMarqueeHTML();
+  document.getElementById('footerPlaceholder').outerHTML  = getFooterHTML('../');
+
+  const obs = new IntersectionObserver(e=>{if(e[0].isIntersecting){animateCounters();obs.disconnect();}},{threshold:.4});
+  const mg = document.querySelector('.milestone-grid');
+  if(mg) obs.observe(mg);
+</script>
+</body>
+</html>

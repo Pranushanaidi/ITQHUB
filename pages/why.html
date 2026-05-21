@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why ITQHUB – Choose the Best</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .why-section { padding:80px 0; }
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; margin-top:50px; }
+    .why-card {
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:32px 28px; transition:all .3s; position:relative; overflow:hidden;
+    }
+    .why-card::after {
+      content:''; position:absolute; bottom:0; left:0; height:3px; width:0;
+      background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .4s;
+    }
+    .why-card:hover::after { width:100%; }
+    .why-card:hover { transform:translateY(-4px); border-color:rgba(0,212,255,.4); }
+    .why-num { font-family:var(--font-head); font-size:3rem; font-weight:800; color:var(--accent); opacity:.12; position:absolute; top:16px; right:20px; }
+    .why-icon { font-size:2.2rem; margin-bottom:16px; }
+    .why-title { font-family:var(--font-head); font-weight:700; font-size:1.05rem; margin-bottom:8px; }
+    .why-desc  { font-size:.84rem; color:var(--muted); }
+
+    /* COMPARISON TABLE */
+    .compare-section { padding:80px 0; background:rgba(255,255,255,.02); }
+    .compare-table { width:100%; border-collapse:collapse; margin-top:40px; }
+    .compare-table th {
+      background:rgba(0,212,255,.1); color:var(--white);
+      font-family:var(--font-head); font-size:.9rem; padding:16px 20px; text-align:left;
+      border-bottom:1px solid var(--border);
+    }
+    .compare-table th.highlight { background:rgba(0,212,255,.2); color:var(--accent); }
+    .compare-table td { padding:14px 20px; border-bottom:1px solid var(--border); font-size:.88rem; color:var(--muted); }
+    .compare-table td.highlight { color:var(--white); font-weight:600; }
+    .compare-table tr:hover td { background:rgba(255,255,255,.03); }
+    .check { color:var(--accent); font-size:1.1rem; }
+    .cross { color:#ff6b6b; font-size:1.1rem; }
+
+    /* CTA */
+    .cta-section {
+      padding:80px 0; text-align:center;
+      background:linear-gradient(135deg,rgba(0,90,180,.3),rgba(0,212,255,.1));
+      border-top:1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-logo">ITQ<span>HUB</span></div></div>
+<button id="btt">▲</button>
+<div id="navPlaceholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <span class="section-tag">Why Choose ITQHUB</span>
+    <h1 class="section-title">What Sets Us <span>Apart</span></h1>
+    <p>We don't just teach tech — we build careers. Here's why thousands choose ITQHUB.</p>
+  </div>
+</div>
+
+<div id="marqueePlaceholder"></div>
+
+<!-- WHY CARDS -->
+<section class="why-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Our Edge</span>
+      <h2 class="section-title">8 Reasons to Choose <span>ITQHUB</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="why-num">01</div><div class="why-icon">🎯</div><div class="why-title">Goal-Oriented Training</div><p class="why-desc">Every course is structured around career outcomes, not just theoretical concepts.</p></div>
+      <div class="why-card reveal"><div class="why-num">02</div><div class="why-icon">👨‍🏫</div><div class="why-title">Expert Instructors</div><p class="why-desc">Learn from working professionals with 10+ years of real industry experience.</p></div>
+      <div class="why-card reveal"><div class="why-num">03</div><div class="why-icon">🔬</div><div class="why-title">Live Project Experience</div><p class="why-desc">Work on live client projects and build a portfolio that impresses employers.</p></div>
+      <div class="why-card reveal"><div class="why-num">04</div><div class="why-icon">📜</div><div class="why-title">Industry Certification</div><p class="why-desc">Earn certificates recognised by top companies across India and globally.</p></div>
+      <div class="why-card reveal"><div class="why-num">05</div><div class="why-icon">🕐</div><div class="why-title">Flexible Timings</div><p class="why-desc">Morning, evening, and weekend batches to fit your busy schedule.</p></div>
+      <div class="why-card reveal"><div class="why-num">06</div><div class="why-icon">💰</div><div class="why-title">Affordable Fees</div><p class="why-desc">World-class education at transparent, affordable pricing with EMI options available.</p></div>
+      <div class="why-card reveal"><div class="why-num">07</div><div class="why-icon">📱</div><div class="why-title">Online & Offline</div><p class="why-desc">Attend classes from our centre or from the comfort of home — your choice.</p></div>
+      <div class="why-card reveal"><div class="why-num">08</div><div class="why-icon">🚀</div><div class="why-title">Career Acceleration</div><p class="why-desc">Mock interviews, resume building, and 1-on-1 mentoring to fast-track your career.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Comparison</span>
+      <h2 class="section-title">ITQHUB vs <span>Others</span></h2>
+      <p class="section-sub" style="margin:10px auto 0;">See exactly how we stack up against typical training institutes.</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto;margin-top:40px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">ITQHUB ✦</th>
+            <th>Typical Institute</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Industry Expert Instructors</td><td class="highlight"><span class="check">✓</span> Yes</td><td><span class="cross">✗</span> Rarely</td></tr>
+          <tr><td>Live Project Training</td><td class="highlight"><span class="check">✓</span> Included</td><td><span class="cross">✗</span> Extra cost</td></tr>
+          <tr><td>100% Placement Support</td><td class="highlight"><span class="check">✓</span> Guaranteed</td><td><span class="cross">✗</span> Limited</td></tr>
+          <tr><td>Online + Offline Batches</td><td class="highlight"><span class="check">✓</span> Both</td><td>Only one</td></tr>
+          <tr><td>Flexible Timings</td><td class="highlight"><span class="check">✓</span> Morning/Eve/Weekend</td><td>Fixed only</td></tr>
+          <tr><td>Industry-Recognised Certificate</td><td class="highlight"><span class="check">✓</span> Yes</td><td>Self-issued only</td></tr>
+          <tr><td>EMI / Flexible Payment</td><td class="highlight"><span class="check">✓</span> Available</td><td><span class="cross">✗</span> No</td></tr>
+          <tr><td>Mock Interviews & Resume Help</td><td class="highlight"><span class="check">✓</span> Included</td><td><span class="cross">✗</span> Extra cost</td></tr>
+          <tr><td>Post-Course Support</td><td class="highlight"><span class="check">✓</span> Lifetime Access</td><td>3 months only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container reveal">
+    <span class="section-tag">Join the Best</span>
+    <h2 class="section-title">The Choice is <span>Clear</span></h2>
+    <p style="color:var(--muted);max-width:480px;margin:14px auto 36px;">Don't settle for less. Get the training that actually lands you a job.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html"        class="btn btn-primary">Enroll Now →</a>
+      <a href="courses.html"        class="btn btn-outline">View Courses</a>
+    </div>
+  </div>
+</section>
+
+<div id="footerPlaceholder"></div>
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById('navPlaceholder').outerHTML    = getNavHTML('../');
+  document.getElementById('marqueePlaceholder').outerHTML = getMarqueeHTML();
+  document.getElementById('footerPlaceholder').outerHTML  = getFooterHTML('../');
+</script>
+</body>
+</html>

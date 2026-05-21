@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ITQHUB – India's Premier IT Training & Certification Institute." />
+  <title>ITQHUB – Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── HOME SPECIFIC ─────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(0, 90, 180, .25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0, 212, 255, .1) 0%, transparent 60%),
+        var(--navy);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .07;
+      background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 30%, transparent 70%);
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0, 212, 255, .08);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+      animation: fadeUp .8s ease both;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      animation: fadeUp .8s .1s ease both;
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+    }
+
+    .hero-title .gold {
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      animation: fadeUp .8s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+      animation: fadeUp .8s .3s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 52px;
+      flex-wrap: wrap;
+      animation: fadeUp .8s .4s ease both;
+    }
+
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .stat-num span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .hero-visual {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(480px, 45vw);
+      opacity: .18;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(-50%) translateX(0)
+      }
+
+      50% {
+        transform: translateY(-52%) translateX(8px)
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    /* ── FEATURES STRIP ─────────────────────── */
+    .features-strip {
+      padding: 80px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all .3s;
+    }
+
+    .feat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .feat-card .icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .feat-card h3 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .feat-card p {
+      font-size: .84rem;
+      color: var(--muted);
+    }
+
+    /* ── MINI COURSES PREVIEW ───────────────── */
+    .courses-preview {
+      padding: 80px 0;
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    /* ── CTA ────────────────────────────────── */
+    #cta {
+      padding: 80px 0;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0, 90, 180, .3), rgba(0, 212, 255, .1));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media(max-width:640px) {
+      .hero-visual {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loader">
+    <div class="loader-logo">ITQ<span>HUB</span></div>
+  </div>
+  <button id="btt">▲</button>
+
+  <div id="navPlaceholder"></div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <svg class="hero-visual" viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="200" stroke="#00d4ff" stroke-width="1" stroke-dasharray="8 6" />
+      <circle cx="250" cy="250" r="140" stroke="#00d4ff" stroke-width="1" opacity=".5" />
+      <circle cx="250" cy="250" r="80" stroke="#f5a623" stroke-width="1" stroke-dasharray="4 8" />
+      <circle cx="250" cy="250" r="24" fill="#00d4ff" opacity=".3" />
+      <line x1="250" y1="50" x2="250" y2="110" stroke="#00d4ff" stroke-width="1.5" />
+      <line x1="450" y1="250" x2="390" y2="250" stroke="#00d4ff" stroke-width="1.5" />
+      <line x1="50" y1="250" x2="110" y2="250" stroke="#00d4ff" stroke-width="1.5" />
+      <line x1="250" y1="450" x2="250" y2="390" stroke="#00d4ff" stroke-width="1.5" />
+      <text x="235" y="258" fill="#00d4ff" font-size="14" font-family="monospace">⟨/⟩</text>
+    </svg>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span>#1 IT Training Institute in India</div>
+        <h1 class="hero-title">
+          Elevate Your Career with<br />
+          <span class="accent">Next-Gen</span> Tech<br />
+          <span class="gold">Education</span>
+        </h1>
+        <p class="hero-desc">ITQHUB delivers industry-grade training in programming, web development, data science, and
+          cloud computing — taught by real practitioners.</p>
+        <div class="hero-actions">
+          <a href="pages/courses.html" class="btn btn-primary">Explore Courses →</a>
+          <a href="pages/about.html" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num"><span data-count="5000" data-suffix="+">5000+</span></div>
+            <div class="stat-label">Students Trained</div>
+          </div>
+          <div>
+            <div class="stat-num"><span data-count="50" data-suffix="+">50+</span></div>
+            <div class="stat-label">Expert Instructors</div>
+          </div>
+          <div>
+            <div class="stat-num"><span data-count="98" data-suffix="%">98%</span></div>
+            <div class="stat-label">Placement Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div id="marqueePlaceholder"></div>
+
+  <!-- FEATURES -->
+  <section class="features-strip">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title">Everything You Need to <span>Succeed</span></h2>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card reveal">
+          <div class="icon">🎯</div>
+          <h3>Goal-Oriented Training</h3>
+          <p>Courses structured around career outcomes, not just theory.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="icon">👨‍🏫</div>
+          <h3>Expert Instructors</h3>
+          <p>Learn from working professionals with 10+ years of experience.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="icon">🔬</div>
+          <h3>Live Projects</h3>
+          <p>Build a real portfolio that speaks before your resume does.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="icon">🚀</div>
+          <h3>100% Placement Support</h3>
+          <p>Dedicated placement team, mock interviews, and referrals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES PREVIEW -->
+  <section class="courses-preview">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-tag">Popular Courses</span>
+        <h2 class="section-title">Start Learning <span>Today</span></h2>
+        <p class="section-sub" style="margin:10px auto 0;">Pick from our most enrolled courses and fast-track your tech
+          career.</p>
+      </div>
+      <div class="courses-grid" id="homeCoursesGrid"></div>
+      <div style="text-align:center;margin-top:40px;" class="reveal">
+        <a href="pages/courses.html" class="btn btn-outline">View All 9 Courses →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container reveal">
+      <span class="section-tag">Limited Seats Available</span>
+      <h2 class="section-title">Ready to <span>Transform</span> Your Future?</h2>
+      <p style="color:var(--muted);max-width:520px;margin:14px auto 36px;">Join thousands of students who chose ITQHUB
+        and are now thriving in top tech companies.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="pages/contact.html" class="btn btn-primary">Enroll Now – Free Inquiry →</a>
+        <a href="tel:+919876543210" class="btn btn-outline">📞 Call Us</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footerPlaceholder"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('navPlaceholder').outerHTML = getNavHTML('');
+    document.getElementById('marqueePlaceholder').outerHTML = getMarqueeHTML();
+    document.getElementById('footerPlaceholder').outerHTML = getFooterHTML('');
+
+    // render 6 hot/featured courses
+    document.getElementById('homeCoursesGrid').innerHTML =
+      courses.filter(c => c.hot || c.id <= 3).slice(0, 6).map(c => courseCardHTML(c, 'pages/contact.html')).join('');
+
+    // counter on scroll
+    const obs = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) { animateCounters(); obs.disconnect(); }
+    }, { threshold: .5 });
+    const statsEl = document.querySelector('.hero-stats');
+    if (statsEl) obs.observe(statsEl);
+  </script>
+</body>
+
+</html>
